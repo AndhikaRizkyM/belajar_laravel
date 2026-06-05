@@ -34,10 +34,10 @@
                             <a href="{{ route('user.create') }}">Create User</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="">Role</a>
+                            <a href="{{ route('role.index') }}">Role</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="">Create Role</a>
+                            <a href="{{ route('role.create') }}">Create Role</a>
                         </li>
                 </li>
             </ul>

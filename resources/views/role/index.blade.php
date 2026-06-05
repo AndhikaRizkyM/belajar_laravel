@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'User Management')
+@section('title', 'Role Management')
 @section('content')
 
     <div class="card">
@@ -8,28 +8,34 @@
         </div>
         <div class="card-body">
             <div class="mb-3" align="right">
-                <a href="{{ route('user.create') }}" class="btn btn-primary">Create New User</a>
+                <a href="{{ route('role.create') }}" class="btn btn-primary">Create New Role</a>
             </div>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No.</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $index => $user)
+                    @foreach ($roles as $index => $role)
                         <tr>
                             <td>{{ $index += 1 }}</td>
-                            <td>{{ $user->name ?? '' }}</td>
-                            <td>{{ $user->email ?? '' }}</td>
+                            <td>{{ $role->name ?? '' }}</td>
                             <td>
-                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success icon btn-sm">
+                                @if ($role->is_active == 1)
+                                    <span class="badge text-white bg-primary">Active</span>
+                                @else
+                                    <span class="badge text-white bg-warning">Inactive</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('role.edit', $role->id) }}" class="btn btn-success icon btn-sm">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                <form action="{{ route('role.destroy', $role->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
