@@ -1,0 +1,15 @@
+Middleware :
+- Role : User
+
+middleware menyimpan session dari login sebelum kita bisa mengakses halaman dashboard jika sudah berhasil login
+
+Login => Middleware => dashboard
+
+Repository -> Select, Insert, Update, Delete
+validation 
+Service ->select * from user where like
+response 
+controller 
+
+
+Repository bikin query dasar -> divalidasi oleh validation -> controller mengolah query tersebut -> view menampilkan hasil query data tersebut menjadi visual

@@ -3,6 +3,9 @@
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+
+
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -10,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Cara simpel, usenya dipanggil di awal biar ga input ulang dan panjang
-Route::get('latihan',[LatihanController::class, 'index']);
-Route::get('tambah',[LatihanController::class, 'tambah'])->name('tambah');
-Route::get('kurang',[LatihanController::class, 'kurang'])->name('kurang');
-Route::get('kali',[LatihanController::class, 'kali'])->name('kali');
-Route::get('bagi',[LatihanController::class, 'bagi'])->name('bagi');
+Route::get('latihan', [LatihanController::class, 'index']);
+Route::get('tambah', [LatihanController::class, 'tambah'])->name('tambah');
+Route::get('kurang', [LatihanController::class, 'kurang'])->name('kurang');
+Route::get('kali', [LatihanController::class, 'kali'])->name('kali');
+Route::get('bagi', [LatihanController::class, 'bagi'])->name('bagi');
 
 
 // Route::get('bagi',[LatihanController::class, 'bagi']);
@@ -40,12 +43,20 @@ Route::get('profile', [ProfileController::class, 'index']);
 // Route::get('dashboard',[LoginController::class, 'app'])->name('app');
 
 // login
-Route::get('/',[LoginController::class, 'index'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 
 Route::post('action-login', [LoginController::class, 'actionLogin'])->name('action-login');
 Route::post('action-logout', [LoginController::class, 'actionLogout'])->name('action-logout');
 
 // dashboard
-Route::get('dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'nocache'])->name('dashboard');
+// Route::get('dashboard', function () {
+//     return view('dashboard.index');
+// })->middleware(['auth', 'nocache'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', function () {
+        return view('dashboard.index');
+    });
+    // Didalam Resource terdapat GET, POST, PUT, DELETE, PATCH
+    Route::resource('user', \App\Http\Controllers\UserController::class);
+});

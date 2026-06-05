@@ -43,3 +43,8 @@ Migration :
 
 
 di dalam migration terdapat seeder yang berfungsi untuk mengisi data dummy
+
+
+composer dump-autoload
+php artisan optimize:clear
+php artisan serve
