@@ -21,9 +21,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-            </ul>
 
-            <ul class="menu">
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-person"></i>
@@ -34,37 +32,73 @@
                             <a href="{{ route('user.index') }}">User</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('user.create') }}">Create User</a>
-                        </li>
-                        <li class="submenu-item ">
                             <a href="{{ route('role.index') }}">Role</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('role.create') }}">Create Role</a>
+                            <a href="{{ route('major.index') }}">Major</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('key.index') }}">Key</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('student.index') }}">Student</a>
                         </li>
                     </ul>
                 </li>
-            </ul>
 
-            <ul class="menu">
-                <li class="sidebar-item  has-sub">
+                {{-- <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span>Locker Management</span>
+                        <i class="bi bi-book"></i>
+                        <span>Major Management</span>
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item ">
-                            <a href="{{ route('locker.index') }}">Locker</a>
+                            <a href="{{ route('major.index') }}">Major</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('locker.create') }}">Create Locker</a>
+                            <a href="{{ route('major.create') }}">Create Major</a>
                         </li>
                     </ul>
-                </li>
-            </ul>
+                </li> --}}
 
-            <ul class="menu">
-                <li class="sidebar-title">Actions</li>
+                {{-- <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-book"></i>
+                        <span>Student Management</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item ">
+                            <a href="{{ route('student.index') }}">Student</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('student.create') }}">Create Student</a>
+                        </li>
+                    </ul>
+                </li> --}}
+
+                {{-- <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-key"></i>
+                        <span>Key Management</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item ">
+                            <a href="{{ route('key.index') }}">Key</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('key.create') }}">Create Key</a>
+                        </li>
+                    </ul>
+                </li> --}}
+
+                <li class="sidebar-title">Management</li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('locker.index') }}" class='sidebar-link'>
+                        <i class="bi bi-box"></i>
+                        <span>Locker Management</span>
+                    </a>
+                </li> <br>
 
                 <li class="sidebar-item">
                     <form action="{{ route('action-logout') }}" method="POST">

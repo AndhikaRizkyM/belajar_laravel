@@ -4,6 +4,8 @@ use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\KeyController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -62,4 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('role', \App\Http\Controllers\RoleController::class);
 
     Route::resource('locker', \App\Http\Controllers\LockerController::class);
+    Route::resource('major', \App\Http\Controllers\MajorController::class);
+    Route::resource('key', \App\Http\Controllers\KeyController::class);
+    Route::resource('student', \App\Http\Controllers\StudentController::class);
 });

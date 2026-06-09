@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Update Locker')
+@section('title', 'Locker')
 @section('content')
 
     <div class="card">
         <div class="card-header">
-            {{-- <h3 class="class-title">{{ $title ?? '' }}</h3> --}}
+            <h3 class="card-title">{{ $title ?? '' }}</h3>
         </div>
         <div class="card-body">
             <form action="{{ route('locker.update', $edit->id) }}" method="post">

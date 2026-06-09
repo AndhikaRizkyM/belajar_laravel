@@ -27,7 +27,8 @@ class LockerController extends Controller
      */
     public function create()
     {
-        return view('locker.create');
+        $title = 'Create New Locker';
+        return view('locker.create', compact('title'));
     }
 
     /**
