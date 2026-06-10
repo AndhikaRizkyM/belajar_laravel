@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Student')
+@section('title', 'Instructor')
 @section('content')
 
     <div class="card">
@@ -7,10 +7,10 @@
             <h3 class="card-title">{{ $title ?? '' }}</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('student.store') }}" method="post">
+            <form action="{{ route('instructor.store') }}" method="post">
                 @csrf
                 <div class="mb-3">
-                    <label for="" class="form-label">Student Name</label>
+                    <label for="" class="form-label">Instructor Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                         placeholder="Enter Your Name" name="name" value="{{ old('name') }}" required>
                     @error('name')
@@ -48,6 +48,29 @@
                 <button class="btn btn-primary" type="submit">Save</button>
                 <a href="{{ url()->previous() }}" class="text-secondary">Back</a>
             </form>
+            {{-- <form action="{{ route('instructor.store') }}" method="post">
+                @csrf
+                <div class="mb-3">
+                    <label for="" class="form-label">Instructor Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Major</label> <br>
+                    <select name="major_id" id="" class="form-control">
+                        <option value="">Select One</option>
+                        @foreach ($majors as $major)
+                            <option value="{{ $major->id }}">{{ $major->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Phone Number</label>
+                    <input type="number" class="form-control" placeholder="Enter Your Phone Number" name="phone"
+                        required>
+                </div> <br>
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a href="{{ url()->previous() }}" class="text-secondary">Back</a>
+            </form> --}}
         </div>
     </div>
 @endsection

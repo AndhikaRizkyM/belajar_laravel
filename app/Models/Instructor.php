@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Instructor extends Model
 {
     protected $fillable = [
         'major_id',
@@ -12,11 +12,6 @@ class Student extends Model
         'phone',
         'user_id'
     ];
-
-    // ORM = Object Relation Model
-    // One to One   : Jarang dipakai di industri, 
-    // One to Many  : Satu ke Banyak, contoh seperti aplikasi POS dimana user/pembeli bisa membeli banyak produk 
-    // Many to Many : Banyak ke Banyak, contoh banyak user/student bisa memiliki banyak major
 
     // belongsTo
     public function major()

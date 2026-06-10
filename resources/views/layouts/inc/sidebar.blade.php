@@ -43,6 +43,9 @@
                         <li class="submenu-item ">
                             <a href="{{ route('student.index') }}">Student</a>
                         </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('instructor.index') }}">Instructor</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -95,7 +98,7 @@
 
                 <li class="sidebar-item">
                     <a href="{{ route('locker.index') }}" class='sidebar-link'>
-                        <i class="bi bi-box"></i>
+                        <i class="bi bi-key"></i>
                         <span>Locker Management</span>
                     </a>
                 </li> <br>
@@ -103,7 +106,7 @@
                 <li class="sidebar-item">
                     <form action="{{ route('action-logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Logout</button>
+                        <button type="submit" class="btn btn-outline-danger">Logout</button>
                     </form>
                 </li>
             </ul>

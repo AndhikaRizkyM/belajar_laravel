@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Majors;
-use App\Models\Student;
+use App\Models\Instructor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-class StudentController extends Controller
+class InstructorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,13 +22,13 @@ class StudentController extends Controller
         // $users = User::orderBy('id', 'desc')->get;
         // $users = User::latest()->get();
 
-        // $students = Student::with('major')->orderByDesc('id')->get();
-        // return $students;
-        // dd($students);
+        // $instructors = instructor::with('major')->orderByDesc('id')->get();
+        // return $instructors;
+        // dd($instructors);
 
-        $students = Student::with('major', 'user')->orderByDesc('id')->get();
-        $title = 'Student Management';
-        return view('student.index', compact('students', 'title'));
+        $instructors = Instructor::with('major', 'user')->orderByDesc('id')->get();
+        $title = 'Instructor Management';
+        return view('instructor.index', compact('instructors', 'title'));
     }
 
     /**
@@ -37,9 +37,9 @@ class StudentController extends Controller
     public function create()
     {
         //
-        $title = "Create New Student";
+        $title = "Create New Instructor";
         $majors = Majors::get();
-        return view('student.create', compact('title', 'majors'));
+        return view('instructor.create', compact('title', 'majors'));
     }
 
     /**
@@ -62,23 +62,29 @@ class StudentController extends Controller
                 'password' => $request->password
             ]);
             // Insert Student
-            Student::create([
+            Instructor::create([
                 'name' => $request->name,
                 'user_id' => $user->id,
                 'major_id' => $request->major_id,
                 'phone' => $request->phone
             ]);
             DB::commit();
-            Alert::success('Success!', 'Create New Student Success!');
+            Alert::success('Success!', 'Create New Instructor Success!');
             // toast('Your student Has Been Created!', 'success');
 
-            return redirect()->to('student');
+            return redirect()->to('instructor');
         } catch (\Throwable $th) {
             DB::rollBack();
             // return $th->getMessage();
             Alert::error('Fail!', $th->getMessage());
             return back()->withInput();
         }
+        //
+        Instructor::create($request->all());
+        Alert::success('Success!', 'Create New instructor Success!');
+        // toast('Your instructor Has Been Created!', 'success');
+
+        return redirect()->to('instructor');
     }
 
     /**
@@ -95,24 +101,23 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         //
-        $title = 'Edit Student';
-        // $students = Student::with('major', 'user')->orderByDesc('id')->get();
+        $title = 'Edit Instructor';
         $majors = Majors::get();
-        $edit = Student::find($id); //kalo gabisa blank
+        $edit = Instructor::find($id); //kalo gabisa blank
         // $edit = User::findOrFail($id); //kalo gabisa 404
-        return view('student.edit', compact('title', 'edit', 'majors'));
+        return view('instructor.edit', compact('title', 'edit', 'majors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, Student $student)
+    public function update(Request $request, Instructor $instructor)
     {
         DB::beginTransaction();
         try {
             $dataUser = ['name' => $request->name, 'email' => $request->email];
 
-            $user = $student->user;
+            $user = $instructor->user;
             // Jika User ingin mengganti password
             if ($request->filled('password')) {
                 $dataUser['password'] = $request->password;
@@ -130,25 +135,34 @@ class StudentController extends Controller
             // student::find($id)->update($data);
 
             // Jika model disimpen di atas (function) / route binding
-            $student->update($data);
+            $instructor->update($data);
             DB::commit();
-            return redirect()->to('student');
+            return redirect()->to('instructor');
         } catch (\Throwable $th) {
             DB::rollBack();
             // return $th->getMessage();
             Alert::error('Fail!', $th->getMessage());
             return back()->withInput();
         };
+
+        // $data = [
+        //     'major_id' => $request->major_id,
+        //     'name' => $request->name,
+        //     'phone' => $request->phone
+        // ];
+
+        // Instructor::find($id)->update($data);
+        // return redirect()->to('instructor');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Instructor $instructor)
     {
         //
         try {
-            $student->user()->delete();
+            $instructor->user()->delete();
             return redirect()->to('student');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -156,5 +170,8 @@ class StudentController extends Controller
             Alert::error('Fail!', $th->getMessage());
             return back();
         }
+
+        // Instructor::find($id)->delete();
+        // return redirect()->to('instructor');
     }
 }
