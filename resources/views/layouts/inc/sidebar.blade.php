@@ -46,6 +46,21 @@
                         <li class="submenu-item ">
                             <a href="{{ route('instructor.index') }}">Instructor</a>
                         </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('menu.index') }}">Menu</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-people"></i>
+                        <span>Management</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item ">
+                            <a href="{{ route('user-role.index') }}">User Role</a>
+                        </li>
                     </ul>
                 </li>
 
